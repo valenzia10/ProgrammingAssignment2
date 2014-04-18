@@ -14,7 +14,26 @@
 ## Arguments: x - Invertible matrix
 ## Return: A cacheMatrix object 
 makeCacheMatrix <- function(x = matrix()) {
-
+  # Initialize inverse matrix to NULL
+  inverse <- NULL;
+  
+  # Function to set the matrix value, and reset its inverse since the matrix changed.
+  set <- function(y){
+    x <<- y;
+    inverse <<- NULL;
+  }
+  
+  # Function to get the actual stored x matrix
+  get <- function() x;
+  
+  # Function to set the cached matrix inverse
+  setinverse <- function(inv) inverse <<- inv;
+  
+  # Function to get the cached inverse matrix
+  getinverse <- function() inverse;
+  
+  # Return the set of getter/setter functions
+  list(set=set, get=get, setinverse=setinverse, getinverse=getinverse)
 }
 
 
